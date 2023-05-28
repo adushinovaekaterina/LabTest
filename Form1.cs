@@ -54,13 +54,15 @@ namespace WindowsFormsApp
                   Color.White
                   );
 
-                //g.DrawRectangle(Pens.Blue, center.X - (int)radius, center.Y - (int)radius, 2 * (int)radius, 2 * (int)radius);
+                g.DrawRectangle(Pens.Blue, (int)(center.X - Math.Sqrt(2) * (int)radius), (int)(center.Y - Math.Sqrt(2) * (int)radius), (int)(Math.Sqrt(2) * 2 * (int)radius), (int)(Math.Sqrt(2) * 2 * (int)radius));
                 
-                g.DrawPolygon(Pens.Red, verticies); // отрисовка квадрата, определяемого массивом verticies
+                g.DrawPolygon(new Pen(Color.Red, 2), verticies); // отрисовка квадрата, определяемого массивом verticies
 
-                /////////////g.FillPolygon(hBrush, verticies);
+                g.FillPolygon(hBrush, verticies);
 
-                g.DrawEllipse(Pens.Blue, center.X - (int)radius, center.Y - (int)radius, (int)(2 * radius), (int)(2 * radius));
+                g.DrawEllipse(new Pen(Color.Black, 2), center.X - (int)radius, center.Y - (int)radius, (int)(2 * radius), (int)(2 * radius));
+
+                g.FillEllipse(new SolidBrush(Color.White), center.X - (int)radius, center.Y - (int)radius, (int)(2 * radius), (int)(2 * radius));
             }
 
             pictureBox.Image = square;
@@ -82,23 +84,23 @@ namespace WindowsFormsApp
             {
                 Point xy = new Point();
                 double radians = angle * Math.PI / 180.0; 
-                xy.X = (int)(Math.Cos(radians) * 1.42 * radius + center.X);
-                xy.Y = (int)(Math.Sin(-radians) * 1.42 * radius + center.Y);
+                xy.X = (int)(Math.Cos(radians) * Math.Sqrt(2) * radius + center.X);
+                xy.Y = (int)(Math.Sin(-radians) * Math.Sqrt(2) * radius + center.Y);
                 points.Add(xy);
                 angle += step;
             }
             return points.ToArray();
-            // координаты точек: (197; 180) (правая точка)
-            //                   (122; 104) (нижняя точка)
-            //                   (46;  180) (левая точка)
-            //                   (121; 255) (верхняя точка)
+            // координаты точек: (273; 222) (правая точка)
+            //                   (166; 114) (нижняя точка)
+            //                   (58;  222) (левая точка)
+            //                   (165; 329) (верхняя точка)
         }
 
         // метод для расчета площади заштрихованной области
         private double AreaCalculation (double radius)
         {
             // округление до 3 числе после запятой
-            return Math.Round(AreaCalculationEllipse(radius) - AreaCalculationSquare(radius), 3);
+            return Math.Round(AreaCalculationSquare(radius) - AreaCalculationEllipse(radius), 3);
         }
 
         // метод для расчета площади окружности
@@ -110,8 +112,8 @@ namespace WindowsFormsApp
         // метод для расчета площади квадрата
         private double AreaCalculationSquare (double radius)
         {
-            double a = radius * 10 / (Math.Sqrt(50 + 10 * Math.Sqrt(5)));
-            return Math.Sqrt(25 + 10 * Math.Sqrt(5)) / 4 * Math.Pow(a, 2);
+            double a = 2 * radius;
+            return Math.Pow(a, 2);
         }
 
         // обработчик события изменения значения trackBar

@@ -51,9 +51,8 @@ namespace WindowsFormsApp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(332, 444);
+            this.pictureBox.Size = new System.Drawing.Size(348, 359);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
@@ -66,15 +65,14 @@ namespace WindowsFormsApp
             0,
             0,
             65536});
-            this.numericUpDown.Location = new System.Drawing.Point(12, 60);
-            this.numericUpDown.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown.Location = new System.Drawing.Point(9, 49);
             this.numericUpDown.Maximum = new decimal(new int[] {
             13,
             0,
             0,
             0});
             this.numericUpDown.Name = "numericUpDown";
-            this.numericUpDown.Size = new System.Drawing.Size(116, 22);
+            this.numericUpDown.Size = new System.Drawing.Size(87, 20);
             this.numericUpDown.TabIndex = 3;
             this.numericUpDown.Value = new decimal(new int[] {
             2,
@@ -86,29 +84,26 @@ namespace WindowsFormsApp
             // labelCentimeters
             // 
             this.labelCentimeters.AutoSize = true;
-            this.labelCentimeters.Location = new System.Drawing.Point(136, 62);
-            this.labelCentimeters.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCentimeters.Location = new System.Drawing.Point(102, 50);
             this.labelCentimeters.Name = "labelCentimeters";
-            this.labelCentimeters.Size = new System.Drawing.Size(23, 16);
+            this.labelCentimeters.Size = new System.Drawing.Size(21, 13);
             this.labelCentimeters.TabIndex = 4;
             this.labelCentimeters.Text = "см";
             // 
             // labelRadius
             // 
             this.labelRadius.AutoSize = true;
-            this.labelRadius.Location = new System.Drawing.Point(8, 23);
-            this.labelRadius.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRadius.Location = new System.Drawing.Point(6, 19);
             this.labelRadius.Name = "labelRadius";
-            this.labelRadius.Size = new System.Drawing.Size(139, 16);
+            this.labelRadius.Size = new System.Drawing.Size(109, 13);
             this.labelRadius.TabIndex = 5;
             this.labelRadius.Text = "Радиус окружности:";
             // 
             // trackBarOfGeometricShapes
             // 
-            this.trackBarOfGeometricShapes.Location = new System.Drawing.Point(7, 164);
-            this.trackBarOfGeometricShapes.Margin = new System.Windows.Forms.Padding(4);
+            this.trackBarOfGeometricShapes.Location = new System.Drawing.Point(5, 133);
             this.trackBarOfGeometricShapes.Name = "trackBarOfGeometricShapes";
-            this.trackBarOfGeometricShapes.Size = new System.Drawing.Size(165, 58);
+            this.trackBarOfGeometricShapes.Size = new System.Drawing.Size(124, 45);
             this.trackBarOfGeometricShapes.SmallChange = 2;
             this.trackBarOfGeometricShapes.TabIndex = 1;
             this.trackBarOfGeometricShapes.Value = 5;
@@ -117,30 +112,27 @@ namespace WindowsFormsApp
             // labelAreaDescription
             // 
             this.labelAreaDescription.AutoSize = true;
-            this.labelAreaDescription.Location = new System.Drawing.Point(8, 244);
-            this.labelAreaDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAreaDescription.Location = new System.Drawing.Point(6, 198);
             this.labelAreaDescription.Name = "labelAreaDescription";
-            this.labelAreaDescription.Size = new System.Drawing.Size(120, 48);
+            this.labelAreaDescription.Size = new System.Drawing.Size(94, 39);
             this.labelAreaDescription.TabIndex = 7;
             this.labelAreaDescription.Text = "Площадь \r\nзаштрихованной \r\nобласти:";
             // 
             // labelAreaCalculation
             // 
             this.labelAreaCalculation.AutoSize = true;
-            this.labelAreaCalculation.Location = new System.Drawing.Point(8, 303);
-            this.labelAreaCalculation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAreaCalculation.Location = new System.Drawing.Point(6, 246);
             this.labelAreaCalculation.Name = "labelAreaCalculation";
-            this.labelAreaCalculation.Size = new System.Drawing.Size(29, 16);
+            this.labelAreaCalculation.Size = new System.Drawing.Size(26, 13);
             this.labelAreaCalculation.TabIndex = 8;
             this.labelAreaCalculation.Text = "S = ";
             // 
             // labelSizeOfGeometricShapes
             // 
             this.labelSizeOfGeometricShapes.AutoSize = true;
-            this.labelSizeOfGeometricShapes.Location = new System.Drawing.Point(8, 124);
-            this.labelSizeOfGeometricShapes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSizeOfGeometricShapes.Location = new System.Drawing.Point(6, 101);
             this.labelSizeOfGeometricShapes.Name = "labelSizeOfGeometricShapes";
-            this.labelSizeOfGeometricShapes.Size = new System.Drawing.Size(169, 32);
+            this.labelSizeOfGeometricShapes.Size = new System.Drawing.Size(134, 26);
             this.labelSizeOfGeometricShapes.TabIndex = 9;
             this.labelSizeOfGeometricShapes.Text = "Размер геометрических \r\nфигур:\r\n";
             // 
@@ -155,25 +147,22 @@ namespace WindowsFormsApp
             this.groupBox.Controls.Add(this.labelRadius);
             this.groupBox.Controls.Add(this.labelCentimeters);
             this.groupBox.Controls.Add(this.numericUpDown);
-            this.groupBox.Location = new System.Drawing.Point(333, 0);
-            this.groupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox.Location = new System.Drawing.Point(349, 0);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox.Size = new System.Drawing.Size(180, 444);
+            this.groupBox.Size = new System.Drawing.Size(135, 359);
             this.groupBox.TabIndex = 9;
             this.groupBox.TabStop = false;
             // 
             // Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 444);
+            this.ClientSize = new System.Drawing.Size(483, 359);
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.pictureBox);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(527, 481);
+            this.MinimumSize = new System.Drawing.Size(399, 398);
             this.Name = "Form";
             this.Text = "Вычисление площади";
             this.ResizeBegin += new System.EventHandler(this.Form_ResizeBegin);
