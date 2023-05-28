@@ -23,33 +23,42 @@ namespace WindowsFormsApp
         {
             InitializeComponent();
 
-            double radius = (double)numericUpDown1.Value * pix; // радиус
-            DrawPolygon_Ellipse(radius);
-            _oldTrackBar = trackBar1.Value;
+            double radius = (double)numericUpDown.Value * pix; // радиус считывается из numericUpDown
+            DrawPolygon_Ellipse(radius); // вызов метода для отрисовки квадрата и эллипса по радиусу эллипса
+            _oldTrackBar = trackBar.Value; // размер считывается из trackBar
         }
+
+        // метод для отрисовки квадрата и эллипса по радиусу эллипса
         private void DrawPolygon_Ellipse(double radius)
         {
-            int angle = 18;
+            int angle = 0; // начальный угол отрисовки квадрата
 
-            Point center = new Point(picCanvas.Width / 2, picCanvas.Height / 2);
+            Point center = new Point(pictureBox.Width / 2, pictureBox.Height / 2); // точка центра фигур по центру pictureBox
 
-            Point[] verticies = CalculateVertices(radius, angle, center);
+            Point[] verticies = CalculateVertices(radius, angle, center); // точки квадрата
 
-            Bitmap polygon = new Bitmap(picCanvas.ClientSize.Width, picCanvas.ClientSize.Height);
+            Bitmap polygon = new Bitmap(pictureBox.ClientSize.Width, pictureBox.ClientSize.Height);
 
+            // конструкция using оформляет блок кода и создает объект некоторого типа, который реализует интерфейс IDisposable,
+            // в частности, его метод Dispose. При завершении блока кода у объекта вызывается метод Dispose
+
+            // создание нового объекта Graphics из указанного объекта polygon
             using (Graphics g = Graphics.FromImage(polygon))
             {
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                // визуализация со сглаживанием
+                g.SmoothingMode = SmoothingMode.HighQuality;
 
+                // кисть для закрашивания области, площадь которой надо найти
                 HatchBrush hBrush = new HatchBrush(
-                  HatchStyle.BackwardDiagonal,
-                  Color.Red,
-                  Color.White);
+                  HatchStyle.ForwardDiagonal,
+                  Color.Black,
+                  Color.White
+                  );
 
                 g.DrawEllipse(Pens.Black, center.X - (int)radius, center.Y - (int)radius, 2 * (int)radius, 2 * (int)radius);
                 g.FillEllipse(hBrush, center.X - (int)radius, center.Y - (int)radius, 2 * (int)radius, 2 * (int)radius);
 
-                g.DrawPolygon(Pens.Black, verticies);
+                g.DrawPolygon(Pens.Red, verticies); // отрисовка квадрата, определяемого массивом verticies
 
                 SolidBrush brush = new SolidBrush(Color.White);
                 g.FillPolygon(brush, verticies);
@@ -57,17 +66,25 @@ namespace WindowsFormsApp
                 //g.DrawEllipse(Pens.Blue, center.X, center.Y-50, 3, 3);
             }
 
-            picCanvas.Image = polygon;
+            pictureBox.Image = polygon;
 
-            label4.Text = "S=" + AreaCalculation((double)numericUpDown1.Value).ToString();
+            label4.Text = "S=" + AreaCalculation((double)numericUpDown.Value).ToString();
         }
 
+        // вычисление точек квадрата
         private Point[] CalculateVertices(double radius, int startingAngle, Point center)
         {
+            // список точек
             List<Point> points = new List<Point>();
-            float step = 360.0f / vertices;
-            float angle = startingAngle;
-            for (double i = startingAngle; i < startingAngle + 360.0; i += step) //go in a circle
+            float step = 360.0f / vertices; // значение, которое будет прибавляться к предыдущему углу и в котором будет строиться следующая вершина = 90
+            float angle = startingAngle; // угол поворота, который должен увеличиваться на 90 градусов
+
+            // i = 0; i < 0 + 360; i = 0 + 90
+            // i = 90; i < 0 + 360; i = 0 + 90
+            // i = 0; i < 0 + 360; i = 0 + 90
+            // i = 0; i < 0 + 360; i = 0 + 90
+
+            for (double i = startingAngle; i < startingAngle + 360.0; i += step) // квадрат строится вокруг окружности
             {
                 Point xy = new Point();
                 double radians = angle * Math.PI / 180.0;
@@ -97,33 +114,33 @@ namespace WindowsFormsApp
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
-            radiusChanged(trackBar1.Value, _oldTrackBar);
-            double radius = (double)numericUpDown1.Value * pix;
+            radiusChanged(trackBar.Value, _oldTrackBar);
+            double radius = (double)numericUpDown.Value * pix;
             DrawPolygon_Ellipse(radius);
-            _oldTrackBar = trackBar1.Value;
+            _oldTrackBar = trackBar.Value;
         }
 
         private void radiusChanged(int a, int b)
         {
             if (a > b)
             {
-                numericUpDown1.Value = numericUpDown1.Value + (numericUpDown1.Value * (decimal)0.1);
+                numericUpDown.Value = numericUpDown.Value + (numericUpDown.Value * (decimal)0.1);
             }
             else if (a < b)
             {
-                numericUpDown1.Value = numericUpDown1.Value - (numericUpDown1.Value * (decimal)0.1);
+                numericUpDown.Value = numericUpDown.Value - (numericUpDown.Value * (decimal)0.1);
             }
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            double radius = (double)numericUpDown1.Value * pix;
+            double radius = (double)numericUpDown.Value * pix;
             DrawPolygon_Ellipse(radius);
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            double radius = (double)numericUpDown1.Value * pix;
+            double radius = (double)numericUpDown.Value * pix;
             DrawPolygon_Ellipse(radius);
         }
 
@@ -141,7 +158,7 @@ namespace WindowsFormsApp
             {
                 control.Size = new Size(control.Size.Width, (int)(control.Size.Width * 1f / proportion));
                 double koeff = (double)control.Size.Width / (double)_oldWidth;
-                numericUpDown1.Value = (numericUpDown1.Value * (decimal)koeff);
+                numericUpDown.Value = (numericUpDown.Value * (decimal)koeff);
 
             }
             // если изменилась высота с прошлого раза
@@ -149,7 +166,7 @@ namespace WindowsFormsApp
             {
                 control.Size = new Size((int)(control.Size.Height * proportion), control.Size.Height);
                 double koeff = (double)control.Size.Height / (double)_oldHeight;
-                numericUpDown1.Value = numericUpDown1.Value * (decimal)koeff;
+                numericUpDown.Value = numericUpDown.Value * (decimal)koeff;
             }
         }
     }

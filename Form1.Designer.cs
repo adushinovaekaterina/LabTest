@@ -29,57 +29,57 @@ namespace WindowsFormsApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.picCanvas = new System.Windows.Forms.PictureBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBar = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // picCanvas
+            // pictureBox
             // 
-            this.picCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.picCanvas.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.picCanvas.Location = new System.Drawing.Point(0, 0);
-            this.picCanvas.Name = "picCanvas";
-            this.picCanvas.Size = new System.Drawing.Size(244, 361);
-            this.picCanvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picCanvas.TabIndex = 1;
-            this.picCanvas.TabStop = false;
+            this.pictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(244, 361);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 1;
+            this.pictureBox.TabStop = false;
             // 
-            // numericUpDown1
+            // numericUpDown
             // 
-            this.numericUpDown1.DecimalPlaces = 3;
-            this.numericUpDown1.Increment = new decimal(new int[] {
+            this.numericUpDown.DecimalPlaces = 3;
+            this.numericUpDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDown1.Location = new System.Drawing.Point(9, 33);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numericUpDown.Location = new System.Drawing.Point(9, 33);
+            this.numericUpDown.Maximum = new decimal(new int[] {
             13,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(87, 20);
-            this.numericUpDown1.TabIndex = 3;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numericUpDown.Name = "numericUpDown";
+            this.numericUpDown.Size = new System.Drawing.Size(87, 20);
+            this.numericUpDown.TabIndex = 3;
+            this.numericUpDown.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label1
             // 
@@ -99,15 +99,15 @@ namespace WindowsFormsApp
             this.label2.TabIndex = 5;
             this.label2.Text = "Введите радиус:";
             // 
-            // trackBar1
+            // trackBar
             // 
-            this.trackBar1.Location = new System.Drawing.Point(5, 117);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(124, 45);
-            this.trackBar1.SmallChange = 2;
-            this.trackBar1.TabIndex = 1;
-            this.trackBar1.Value = 5;
-            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            this.trackBar.Location = new System.Drawing.Point(5, 117);
+            this.trackBar.Name = "trackBar";
+            this.trackBar.Size = new System.Drawing.Size(124, 45);
+            this.trackBar.SmallChange = 2;
+            this.trackBar.TabIndex = 1;
+            this.trackBar.Value = 5;
+            this.trackBar.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // label3
             // 
@@ -134,10 +134,10 @@ namespace WindowsFormsApp
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.trackBar1);
+            this.groupBox1.Controls.Add(this.trackBar);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.numericUpDown1);
+            this.groupBox1.Controls.Add(this.numericUpDown);
             this.groupBox1.Location = new System.Drawing.Point(250, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(135, 361);
@@ -159,7 +159,7 @@ namespace WindowsFormsApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 361);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.picCanvas);
+            this.Controls.Add(this.pictureBox);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 400);
@@ -168,9 +168,9 @@ namespace WindowsFormsApp
             this.ResizeBegin += new System.EventHandler(this.Form1_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
             this.Resize += new System.EventHandler(this.Form1_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -179,11 +179,11 @@ namespace WindowsFormsApp
 
         #endregion
 
-        private System.Windows.Forms.PictureBox picCanvas;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.NumericUpDown numericUpDown;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar trackBar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
