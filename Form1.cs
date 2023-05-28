@@ -54,13 +54,13 @@ namespace WindowsFormsApp
                   Color.White
                   );
 
-                g.DrawEllipse(Pens.Black, center.X - (int)radius, center.Y - (int)radius, 2 * (int)radius, 2 * (int)radius);
-                g.FillEllipse(hBrush, center.X - (int)radius, center.Y - (int)radius, 2 * (int)radius, 2 * (int)radius);
-
+                //g.DrawRectangle(Pens.Blue, center.X - (int)radius, center.Y - (int)radius, 2 * (int)radius, 2 * (int)radius);
+                
                 g.DrawPolygon(Pens.Red, verticies); // отрисовка квадрата, определяемого массивом verticies
 
-                SolidBrush brush = new SolidBrush(Color.White);
-                g.FillPolygon(brush, verticies);
+                /////////////g.FillPolygon(hBrush, verticies);
+
+                g.DrawEllipse(Pens.Blue, center.X - (int)radius, center.Y - (int)radius, (int)(2 * radius), (int)(2 * radius));
             }
 
             pictureBox.Image = square;
@@ -82,8 +82,8 @@ namespace WindowsFormsApp
             {
                 Point xy = new Point();
                 double radians = angle * Math.PI / 180.0; 
-                xy.X = (int)(Math.Cos(radians) * radius + center.X);
-                xy.Y = (int)(Math.Sin(-radians) * radius + center.Y);
+                xy.X = (int)(Math.Cos(radians) * 1.42 * radius + center.X);
+                xy.Y = (int)(Math.Sin(-radians) * 1.42 * radius + center.Y);
                 points.Add(xy);
                 angle += step;
             }
