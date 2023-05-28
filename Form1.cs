@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp
 {
-    public partial class Form1 : Form
+    public partial class Form : System.Windows.Forms.Form
     {
         private int vertices = 4; // количество вершин
         private double pix = 37.936; // размер фигур
@@ -19,31 +19,31 @@ namespace WindowsFormsApp
         int _oldTrackBar; // 
         float proportion = 1f; //
 
-        public Form1()
+        public Form()
         {
             InitializeComponent();
 
             double radius = (double)numericUpDown.Value * pix; // радиус считывается из numericUpDown
-            DrawPolygon_Ellipse(radius); // вызов метода для отрисовки квадрата и эллипса по радиусу эллипса
-            _oldTrackBar = trackBar.Value; // размер считывается из trackBar
+            DrawSquareAndEllipse(radius); // вызов метода для отрисовки квадрата и эллипса по радиусу эллипса
+            _oldTrackBar = trackBarOfGeometricShapes.Value; // размер считывается из trackBar
         }
 
         // метод для отрисовки квадрата и эллипса по радиусу эллипса
-        private void DrawPolygon_Ellipse(double radius)
+        private void DrawSquareAndEllipse (double radius)
         {
             int angle = 0; // начальный угол отрисовки квадрата
 
             Point center = new Point(pictureBox.Width / 2, pictureBox.Height / 2); // точка центра фигур по центру pictureBox
 
-            Point[] verticies = CalculateVertices(radius, angle, center); // точки квадрата
+            Point[] verticies = CalculateVertices (radius, angle, center); // точки квадрата вычисляются методом 
 
-            Bitmap polygon = new Bitmap(pictureBox.ClientSize.Width, pictureBox.ClientSize.Height);
+            Bitmap square = new Bitmap (pictureBox.ClientSize.Width, pictureBox.ClientSize.Height);
 
             // конструкция using оформляет блок кода и создает объект некоторого типа, который реализует интерфейс IDisposable,
             // в частности, его метод Dispose. При завершении блока кода у объекта вызывается метод Dispose
 
-            // создание нового объекта Graphics из указанного объекта polygon
-            using (Graphics g = Graphics.FromImage(polygon))
+            // создание нового объекта Graphics из указанного объекта square
+            using (Graphics g = Graphics.FromImage(square))
             {
                 // визуализация со сглаживанием
                 g.SmoothingMode = SmoothingMode.HighQuality;
@@ -62,95 +62,109 @@ namespace WindowsFormsApp
 
                 SolidBrush brush = new SolidBrush(Color.White);
                 g.FillPolygon(brush, verticies);
-
-                //g.DrawEllipse(Pens.Blue, center.X, center.Y-50, 3, 3);
             }
 
-            pictureBox.Image = polygon;
+            pictureBox.Image = square;
 
-            label4.Text = "S=" + AreaCalculation((double)numericUpDown.Value).ToString();
+            // метод для расчета площади выводится в лэйбл
+            labelAreaCalculation.Text = "S = " + AreaCalculation((double)numericUpDown.Value).ToString();
         }
 
         // вычисление точек квадрата
-        private Point[] CalculateVertices(double radius, int startingAngle, Point center)
+        private Point[] CalculateVertices (double radius, int startingAngle, Point center)
         {
             // список точек
             List<Point> points = new List<Point>();
             float step = 360.0f / vertices; // значение, которое будет прибавляться к предыдущему углу и в котором будет строиться следующая вершина = 90
             float angle = startingAngle; // угол поворота, который должен увеличиваться на 90 градусов
 
-            // i = 0; i < 0 + 360; i = 0 + 90
-            // i = 90; i < 0 + 360; i = 0 + 90
-            // i = 0; i < 0 + 360; i = 0 + 90
-            // i = 0; i < 0 + 360; i = 0 + 90
-
+            // 4 раза отрабатывает
             for (double i = startingAngle; i < startingAngle + 360.0; i += step) // квадрат строится вокруг окружности
             {
                 Point xy = new Point();
-                double radians = angle * Math.PI / 180.0;
+                double radians = angle * Math.PI / 180.0; 
                 xy.X = (int)(Math.Cos(radians) * radius + center.X);
                 xy.Y = (int)(Math.Sin(-radians) * radius + center.Y);
                 points.Add(xy);
                 angle += step;
             }
             return points.ToArray();
+            // координаты точек: (197; 180) (правая точка)
+            //                   (122; 104) (нижняя точка)
+            //                   (46;  180) (левая точка)
+            //                   (121; 255) (верхняя точка)
         }
 
-        private double AreaCalculation(double radius)
+        // метод для расчета площади заштрихованной области
+        private double AreaCalculation (double radius)
         {
-            return Math.Round(AreaCalculationEllipse(radius) - AreaCalculationPolygon(radius), 3);
+            // округление до 3 числе после запятой
+            return Math.Round(AreaCalculationEllipse(radius) - AreaCalculationSquare(radius), 3);
         }
 
-        private double AreaCalculationEllipse(double radius)
+        // метод для расчета площади окружности
+        private double AreaCalculationEllipse (double radius)
         {
             return Math.PI * Math.Pow(radius, 2);
         }
 
-        private double AreaCalculationPolygon(double radius)
+        // метод для расчета площади квадрата
+        private double AreaCalculationSquare (double radius)
         {
             double a = radius * 10 / (Math.Sqrt(50 + 10 * Math.Sqrt(5)));
             return Math.Sqrt(25 + 10 * Math.Sqrt(5)) / 4 * Math.Pow(a, 2);
         }
 
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        // обработчик события изменения значения trackBar
+        private void trackBarOfGeometricShapes_ValueChanged(object sender, EventArgs e)
         {
-            radiusChanged(trackBar.Value, _oldTrackBar);
+            radiusChanged (trackBarOfGeometricShapes.Value, _oldTrackBar);
             double radius = (double)numericUpDown.Value * pix;
-            DrawPolygon_Ellipse(radius);
-            _oldTrackBar = trackBar.Value;
+            DrawSquareAndEllipse(radius);
+            _oldTrackBar = trackBarOfGeometricShapes.Value;
         }
 
-        private void radiusChanged(int a, int b)
+        // метод для изменения радиуса
+        private void radiusChanged (int a, int b)
         {
+            // если новое значение trackBar больше старого
             if (a > b)
             {
                 numericUpDown.Value = numericUpDown.Value + (numericUpDown.Value * (decimal)0.1);
             }
+
+            // если новое значение trackBar меньше старого
             else if (a < b)
             {
                 numericUpDown.Value = numericUpDown.Value - (numericUpDown.Value * (decimal)0.1);
             }
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        // обработчик события изменения значения numericUpDown
+        private void numericUpDown_ValueChanged (object sender, EventArgs e)
         {
+            // берется значение из numericUpDown, приравнивается к радиусу и перерисовываются фигуры
             double radius = (double)numericUpDown.Value * pix;
-            DrawPolygon_Ellipse(radius);
+            DrawSquareAndEllipse(radius);
         }
 
-        private void Form1_Resize(object sender, EventArgs e)
+        // обработчик события изменения размера формы
+        private void Form_Resize (object sender, EventArgs e)
         {
             double radius = (double)numericUpDown.Value * pix;
-            DrawPolygon_Ellipse(radius);
+            DrawSquareAndEllipse(radius);
         }
 
-        private void Form1_ResizeBegin(object sender, EventArgs e)
+        // событие ResizeBegin возникает, когда пользователь начинает изменять размер формы,
+        // это действие помещает форму в модальный цикл изменения размера до завершения операции изменения размера
+        private void Form_ResizeBegin (object sender, EventArgs e)
         {
             _oldWidth = Width;
             _oldHeight = Height;
         }
 
-        private void Form1_ResizeEnd(object sender, EventArgs e)
+        // событие ResizeEnd возникает, когда пользователь завершает изменение размера формы
+        private void Form_ResizeEnd (object sender, EventArgs e)
         {
             Control control = (Control)sender;
             // если изменилась ширина с прошлого раза

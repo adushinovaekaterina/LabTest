@@ -1,7 +1,7 @@
 ﻿
 namespace WindowsFormsApp
 {
-    partial class Form1
+    partial class Form
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -31,17 +31,17 @@ namespace WindowsFormsApp
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.numericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.trackBar = new System.Windows.Forms.TrackBar();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelCentimeters = new System.Windows.Forms.Label();
+            this.labelRadius = new System.Windows.Forms.Label();
+            this.trackBarOfGeometricShapes = new System.Windows.Forms.TrackBar();
+            this.labelAreaDescription = new System.Windows.Forms.Label();
+            this.labelAreaCalculation = new System.Windows.Forms.Label();
+            this.labelSizeOfGeometricShapes = new System.Windows.Forms.Label();
+            this.groupBox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarOfGeometricShapes)).BeginInit();
+            this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -51,8 +51,9 @@ namespace WindowsFormsApp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(244, 361);
+            this.pictureBox.Size = new System.Drawing.Size(332, 444);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
@@ -65,114 +66,124 @@ namespace WindowsFormsApp
             0,
             0,
             65536});
-            this.numericUpDown.Location = new System.Drawing.Point(9, 33);
+            this.numericUpDown.Location = new System.Drawing.Point(12, 60);
+            this.numericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown.Maximum = new decimal(new int[] {
             13,
             0,
             0,
             0});
             this.numericUpDown.Name = "numericUpDown";
-            this.numericUpDown.Size = new System.Drawing.Size(87, 20);
+            this.numericUpDown.Size = new System.Drawing.Size(116, 22);
             this.numericUpDown.TabIndex = 3;
             this.numericUpDown.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.numericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.numericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
             // 
-            // label1
+            // labelCentimeters
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(102, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "см";
+            this.labelCentimeters.AutoSize = true;
+            this.labelCentimeters.Location = new System.Drawing.Point(136, 62);
+            this.labelCentimeters.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCentimeters.Name = "labelCentimeters";
+            this.labelCentimeters.Size = new System.Drawing.Size(23, 16);
+            this.labelCentimeters.TabIndex = 4;
+            this.labelCentimeters.Text = "см";
             // 
-            // label2
+            // labelRadius
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Введите радиус:";
+            this.labelRadius.AutoSize = true;
+            this.labelRadius.Location = new System.Drawing.Point(8, 23);
+            this.labelRadius.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRadius.Name = "labelRadius";
+            this.labelRadius.Size = new System.Drawing.Size(139, 16);
+            this.labelRadius.TabIndex = 5;
+            this.labelRadius.Text = "Радиус окружности:";
             // 
-            // trackBar
+            // trackBarOfGeometricShapes
             // 
-            this.trackBar.Location = new System.Drawing.Point(5, 117);
-            this.trackBar.Name = "trackBar";
-            this.trackBar.Size = new System.Drawing.Size(124, 45);
-            this.trackBar.SmallChange = 2;
-            this.trackBar.TabIndex = 1;
-            this.trackBar.Value = 5;
-            this.trackBar.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            this.trackBarOfGeometricShapes.Location = new System.Drawing.Point(7, 164);
+            this.trackBarOfGeometricShapes.Margin = new System.Windows.Forms.Padding(4);
+            this.trackBarOfGeometricShapes.Name = "trackBarOfGeometricShapes";
+            this.trackBarOfGeometricShapes.Size = new System.Drawing.Size(165, 58);
+            this.trackBarOfGeometricShapes.SmallChange = 2;
+            this.trackBarOfGeometricShapes.TabIndex = 1;
+            this.trackBarOfGeometricShapes.Value = 5;
+            this.trackBarOfGeometricShapes.ValueChanged += new System.EventHandler(this.trackBarOfGeometricShapes_ValueChanged);
             // 
-            // label3
+            // labelAreaDescription
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 198);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 39);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Площадь \r\nзаштрихованной \r\nобласти:";
+            this.labelAreaDescription.AutoSize = true;
+            this.labelAreaDescription.Location = new System.Drawing.Point(8, 244);
+            this.labelAreaDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAreaDescription.Name = "labelAreaDescription";
+            this.labelAreaDescription.Size = new System.Drawing.Size(120, 48);
+            this.labelAreaDescription.TabIndex = 7;
+            this.labelAreaDescription.Text = "Площадь \r\nзаштрихованной \r\nобласти:";
             // 
-            // label4
+            // labelAreaCalculation
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 246);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Тут будет площадь";
+            this.labelAreaCalculation.AutoSize = true;
+            this.labelAreaCalculation.Location = new System.Drawing.Point(8, 303);
+            this.labelAreaCalculation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAreaCalculation.Name = "labelAreaCalculation";
+            this.labelAreaCalculation.Size = new System.Drawing.Size(29, 16);
+            this.labelAreaCalculation.TabIndex = 8;
+            this.labelAreaCalculation.Text = "S = ";
             // 
-            // groupBox1
+            // labelSizeOfGeometricShapes
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelSizeOfGeometricShapes.AutoSize = true;
+            this.labelSizeOfGeometricShapes.Location = new System.Drawing.Point(8, 124);
+            this.labelSizeOfGeometricShapes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSizeOfGeometricShapes.Name = "labelSizeOfGeometricShapes";
+            this.labelSizeOfGeometricShapes.Size = new System.Drawing.Size(169, 32);
+            this.labelSizeOfGeometricShapes.TabIndex = 9;
+            this.labelSizeOfGeometricShapes.Text = "Размер геометрических \r\nфигур:\r\n";
+            // 
+            // groupBox
+            // 
+            this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.trackBar);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.numericUpDown);
-            this.groupBox1.Location = new System.Drawing.Point(250, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(135, 361);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
+            this.groupBox.Controls.Add(this.labelSizeOfGeometricShapes);
+            this.groupBox.Controls.Add(this.labelAreaCalculation);
+            this.groupBox.Controls.Add(this.labelAreaDescription);
+            this.groupBox.Controls.Add(this.trackBarOfGeometricShapes);
+            this.groupBox.Controls.Add(this.labelRadius);
+            this.groupBox.Controls.Add(this.labelCentimeters);
+            this.groupBox.Controls.Add(this.numericUpDown);
+            this.groupBox.Location = new System.Drawing.Point(333, 0);
+            this.groupBox.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox.Size = new System.Drawing.Size(180, 444);
+            this.groupBox.TabIndex = 9;
+            this.groupBox.TabStop = false;
             // 
-            // label5
+            // Form
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 101);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(115, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Изменение размера:\r\n";
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 361);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(512, 444);
+            this.Controls.Add(this.groupBox);
             this.Controls.Add(this.pictureBox);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(400, 400);
-            this.Name = "Form1";
-            this.Text = "Программа";
-            this.ResizeBegin += new System.EventHandler(this.Form1_ResizeBegin);
-            this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.MinimumSize = new System.Drawing.Size(527, 481);
+            this.Name = "Form";
+            this.Text = "Вычисление площади";
+            this.ResizeBegin += new System.EventHandler(this.Form_ResizeBegin);
+            this.ResizeEnd += new System.EventHandler(this.Form_ResizeEnd);
+            this.Resize += new System.EventHandler(this.Form_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarOfGeometricShapes)).EndInit();
+            this.groupBox.ResumeLayout(false);
+            this.groupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -181,13 +192,13 @@ namespace WindowsFormsApp
 
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.NumericUpDown numericUpDown;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TrackBar trackBar;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelCentimeters;
+        private System.Windows.Forms.Label labelRadius;
+        private System.Windows.Forms.TrackBar trackBarOfGeometricShapes;
+        private System.Windows.Forms.Label labelAreaDescription;
+        private System.Windows.Forms.Label labelAreaCalculation;
+        private System.Windows.Forms.Label labelSizeOfGeometricShapes;
+        private System.Windows.Forms.GroupBox groupBox;
     }
 }
 
