@@ -14,10 +14,9 @@ namespace WindowsFormsApp
     public partial class Form : System.Windows.Forms.Form
     {
         private int vertices = 4; // количество вершин
-        private double pix = 37.936; // размер фигур
+        private double pix = 37.936; // размер фигур домножается на это
         int _oldWidth, _oldHeight; // 
-        int _oldTrackBar; // 
-        float proportion = 1f; //
+        int _oldTrackBar; //
 
         public Form()
         {
@@ -166,19 +165,18 @@ namespace WindowsFormsApp
         // событие ResizeEnd возникает, когда пользователь завершает изменение размера формы
         private void Form_ResizeEnd (object sender, EventArgs e)
         {
+            // Control - базовый класс для элементов управления, являющихся компонентами с визуальным представлением
             Control control = (Control)sender;
+
             // если изменилась ширина с прошлого раза
             if (_oldWidth != Width)
             {
-                control.Size = new Size(control.Size.Width, (int)(control.Size.Width * 1f / proportion));
                 double koeff = (double)control.Size.Width / (double)_oldWidth;
-                numericUpDown.Value = (numericUpDown.Value * (decimal)koeff);
-
+                numericUpDown.Value = numericUpDown.Value * (decimal)koeff;
             }
             // если изменилась высота с прошлого раза
             if (_oldHeight != Height)
             {
-                control.Size = new Size((int)(control.Size.Height * proportion), control.Size.Height);
                 double koeff = (double)control.Size.Height / (double)_oldHeight;
                 numericUpDown.Value = numericUpDown.Value * (decimal)koeff;
             }
