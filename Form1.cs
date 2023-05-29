@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp
@@ -14,9 +9,9 @@ namespace WindowsFormsApp
     public partial class Form : System.Windows.Forms.Form
     {
         private int vertices = 4; // количество вершин
-        private double pix = 37.936; // размер фигур домножается на это
-        int _oldWidth, _oldHeight; // 
-        int _oldTrackBar; //
+        private double pix = 37.936; // радиус домножается на это
+        int _oldWidth, _oldHeight;
+        int _oldTrackBar;
 
         public Form()
         {
@@ -54,15 +49,20 @@ namespace WindowsFormsApp
                   Color.White
                   );
 
-                g.DrawRectangle(Pens.Blue, (int)(center.X - Math.Sqrt(2) * (int)radius), (int)(center.Y - Math.Sqrt(2) * (int)radius), (int)(Math.Sqrt(2) * 2 * (int)radius), (int)(Math.Sqrt(2) * 2 * (int)radius));
+                // внешний квадрат
+                g.DrawRectangle(Pens.Blue, (float)(center.X - Math.Sqrt(2) * radius), (float)(center.Y - Math.Sqrt(2) * radius), (float)(Math.Sqrt(2) * 2 * radius), (float)(Math.Sqrt(2) * 2 * radius));
                 
+                // внутренний квадрат
                 g.DrawPolygon(new Pen(Color.Red, 2), verticies); // отрисовка квадрата, определяемого массивом verticies
 
+                // заливка внутреннего квадрата
                 g.FillPolygon(hBrush, verticies);
 
-                g.DrawEllipse(new Pen(Color.Black, 2), center.X - (int)radius, center.Y - (int)radius, (int)(2 * radius), (int)(2 * radius));
+                // окружность
+                g.DrawEllipse(new Pen(Color.Black, 2), (float)(center.X - radius), (float)(center.Y - radius), (float)(2 * radius), (float)(2 * radius));
 
-                g.FillEllipse(new SolidBrush(Color.White), center.X - (int)radius, center.Y - (int)radius, (int)(2 * radius), (int)(2 * radius));
+                // заливка окружности
+                g.FillEllipse(new SolidBrush(Color.White), (float)(center.X - radius), (float)(center.Y - radius), (float)(2 * radius), (float)(2 * radius));
             }
 
             pictureBox.Image = square;
