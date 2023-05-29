@@ -9,7 +9,7 @@ namespace WindowsFormsApp
     public partial class Form : System.Windows.Forms.Form
     {
         private int vertices = 4; // количество вершин
-        private double pix = 37.936; // радиус домножается на это
+        private double pix = 43; // радиус домножается на это
         int _oldWidth, _oldHeight;
         int _oldTrackBar;
 
@@ -22,8 +22,7 @@ namespace WindowsFormsApp
             _oldTrackBar = trackBarOfGeometricShapes.Value; // размер считывается из trackBar
         }
 
-        // метод для отрисовки квадрата и эллипса по радиусу эллипса
-        private void DrawSquareAndEllipse (double radius)
+        private void DrawSquareAndEllipse (double radius) // метод для отрисовки квадрата и эллипса по радиусу эллипса
         {
             int angle = 0; // начальный угол отрисовки квадрата
 
@@ -31,56 +30,41 @@ namespace WindowsFormsApp
 
             Point[] verticies = CalculateVertices (radius, angle, center); // точки квадрата вычисляются методом 
 
-            Bitmap square = new Bitmap (pictureBox.ClientSize.Width, pictureBox.ClientSize.Height);
+            Bitmap figures = new Bitmap (pictureBox.ClientSize.Width, pictureBox.ClientSize.Height);
 
-            // конструкция using оформляет блок кода и создает объект некоторого типа, который реализует интерфейс IDisposable,
-            // в частности, его метод Dispose. При завершении блока кода у объекта вызывается метод Dispose
-
-            // создание нового объекта Graphics из указанного объекта square
-            using (Graphics g = Graphics.FromImage(square))
-            {
-                // визуализация со сглаживанием
-                g.SmoothingMode = SmoothingMode.HighQuality;
-
-                // кисть для закрашивания области, площадь которой надо найти
-                HatchBrush hBrush = new HatchBrush(
+            using (Graphics g = Graphics.FromImage(figures))
+            {                
+                g.SmoothingMode = SmoothingMode.HighQuality; // визуализация со сглаживанием
+                                
+                HatchBrush hBrush = new HatchBrush( // кисть для закрашивания области, площадь которой надо найти
                   HatchStyle.ForwardDiagonal,
                   Color.Black,
                   Color.White
                   );
-
-                // внешний квадрат
-                g.DrawRectangle(Pens.Blue, (float)(center.X - Math.Sqrt(2) * radius), (float)(center.Y - Math.Sqrt(2) * radius), (float)(Math.Sqrt(2) * 2 * radius), (float)(Math.Sqrt(2) * 2 * radius));
                 
-                // внутренний квадрат
-                g.DrawPolygon(new Pen(Color.Red, 2), verticies); // отрисовка квадрата, определяемого массивом verticies
+                g.DrawRectangle(Pens.Blue, (float)(center.X - Math.Sqrt(2) * radius), (float)(center.Y - Math.Sqrt(2) * radius), (float)(Math.Sqrt(2) * 2 * radius), (float)(Math.Sqrt(2) * 2 * radius)); // внешний квадрат
 
-                // заливка внутреннего квадрата
-                g.FillPolygon(hBrush, verticies);
-
-                // окружность
-                g.DrawEllipse(new Pen(Color.Black, 2), (float)(center.X - radius), (float)(center.Y - radius), (float)(2 * radius), (float)(2 * radius));
-
-                // заливка окружности
-                g.FillEllipse(new SolidBrush(Color.White), (float)(center.X - radius), (float)(center.Y - radius), (float)(2 * radius), (float)(2 * radius));
+                g.DrawPolygon(new Pen(Color.Red, 2), verticies); // отрисовка внутреннего квадрата, определяемого массивом verticies
+                               
+                g.FillPolygon(hBrush, verticies); // заливка внутреннего квадрата
+                
+                g.DrawEllipse(new Pen(Color.Black, 2), (float)(center.X - radius), (float)(center.Y - radius), (float)(2 * radius), (float)(2 * radius)); // окружность
+               
+                g.FillEllipse(new SolidBrush(Color.White), (float)(center.X - radius), (float)(center.Y - radius), (float)(2 * radius), (float)(2 * radius)); // заливка окружности
             }
 
-            pictureBox.Image = square;
-
-            // метод для расчета площади выводится в лэйбл
-            labelAreaCalculation.Text = "S = " + AreaCalculation((double)numericUpDown.Value).ToString();
+            pictureBox.Image = figures; 
+                        
+            labelAreaCalculation.Text = "S = " + AreaCalculation((double)numericUpDown.Value).ToString(); // метод для расчета площади выводится в лэйбл
         }
-
-        // вычисление точек квадрата
-        private Point[] CalculateVertices (double radius, int startingAngle, Point center)
-        {
-            // список точек
-            List<Point> points = new List<Point>();
+        
+        private Point[] CalculateVertices (double radius, int startingAngle, Point center) // вычисление вершин квадрата
+        {            
+            List<Point> points = new List<Point>(); // список точек
             float step = 360.0f / vertices; // значение, которое будет прибавляться к предыдущему углу и в котором будет строиться следующая вершина = 90
             float angle = startingAngle; // угол поворота, который должен увеличиваться на 90 градусов
-
-            // 4 раза отрабатывает
-            for (double i = startingAngle; i < startingAngle + 360.0; i += step) // квадрат строится вокруг окружности
+                        
+            for (double i = startingAngle; i < startingAngle + 360.0; i += step) // квадрат строится вокруг окружности, 4 раза отрабатывает
             {
                 Point xy = new Point();
                 double radians = angle * Math.PI / 180.0; 
@@ -89,98 +73,101 @@ namespace WindowsFormsApp
                 points.Add(xy);
                 angle += step;
             }
-            return points.ToArray();
-            // координаты точек: (273; 222) (правая точка)
-            //                   (166; 114) (нижняя точка)
-            //                   (58;  222) (левая точка)
-            //                   (165; 329) (верхняя точка)
+            return points.ToArray(); // координаты точек: (273; 222 - правая точка), (166; 114 - нижняя точка), (58;  222 - левая точка), (165; 329 - верхняя точка)       
         }
-
-        // метод для расчета площади заштрихованной области
-        private double AreaCalculation (double radius)
+                
+        private double AreaCalculation (double radius) // метод для расчета площади заштрихованной области
+        {           
+            return Math.Round(AreaCalculationSquare(radius) - AreaCalculationEllipse(radius), 3); // округление до 3 числе после запятой
+        }
+        
+        private double AreaCalculationEllipse (double radius) // метод для расчета площади окружности
         {
-            // округление до 3 числе после запятой
-            return Math.Round(AreaCalculationSquare(radius) - AreaCalculationEllipse(radius), 3);
+            var e = Math.PI * Math.Pow(radius, 2);
+            return e;
         }
-
-        // метод для расчета площади окружности
-        private double AreaCalculationEllipse (double radius)
-        {
-            return Math.PI * Math.Pow(radius, 2);
-        }
-
-        // метод для расчета площади квадрата
-        private double AreaCalculationSquare (double radius)
+        
+        private double AreaCalculationSquare (double radius) // метод для расчета площади квадрата
         {
             double a = 2 * radius;
-            return Math.Pow(a, 2);
+            var s = Math.Pow(a, 2);
+            return s;
         }
-
-        // обработчик события изменения значения trackBar
-        private void trackBarOfGeometricShapes_ValueChanged(object sender, EventArgs e)
+        
+        private void trackBarOfGeometricShapes_ValueChanged(object sender, EventArgs e) // обработчик события изменения значения trackBar
         {
-            radiusChanged (trackBarOfGeometricShapes.Value, _oldTrackBar);
-            double radius = (double)numericUpDown.Value * pix;
-            DrawSquareAndEllipse(radius);
-            _oldTrackBar = trackBarOfGeometricShapes.Value;
+            try
+            {
+                radiusChanged(trackBarOfGeometricShapes.Value, _oldTrackBar);
+                double radius = (double)numericUpDown.Value * pix;
+                DrawSquareAndEllipse(radius);
+                _oldTrackBar = trackBarOfGeometricShapes.Value;
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Некорректное значение радиуса. Радиус должен быть в пределах от " + numericUpDown.Minimum + " см до " + numericUpDown.Maximum + " см. Увеличьте или уменьшите размер геометрических фигур с помощью ползунка.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
-        // метод для изменения радиуса
-        private void radiusChanged (int a, int b)
-        {
-            // если новое значение trackBar больше старого
-            if (a > b)
+       
+        private void radiusChanged (int a, int b) // метод для изменения радиуса
+        {            
+            if (a > b) // если новое значение trackBar больше старого
             {
                 numericUpDown.Value = numericUpDown.Value + (numericUpDown.Value * (decimal)0.1);
             }
-
-            // если новое значение trackBar меньше старого
-            else if (a < b)
+           
+            else if (a < b) // если новое значение trackBar меньше старого
             {
                 numericUpDown.Value = numericUpDown.Value - (numericUpDown.Value * (decimal)0.1);
             }
         }
-
-        // обработчик события изменения значения numericUpDown
-        private void numericUpDown_ValueChanged (object sender, EventArgs e)
+        
+        private void numericUpDown_ValueChanged (object sender, EventArgs e) // обработчик события изменения значения numericUpDown
         {
-            // берется значение из numericUpDown, приравнивается к радиусу и перерисовываются фигуры
+            if (numericUpDown.Value > 0)
+            {
+                double radius = (double)numericUpDown.Value * pix; // берется значение из numericUpDown, приравнивается к радиусу 
+                DrawSquareAndEllipse(radius); // и перерисовываются фигуры
+            }
+            else 
+            {
+                MessageBox.Show("Некорректное значение радиуса. Радиус должен быть положительным " + numericUpDown.Minimum + " см до " + numericUpDown.Maximum + " см. Увеличьте значение радиуса.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+                
+        private void Form_Resize (object sender, EventArgs e) // обработчик события изменения размера формы
+        {
             double radius = (double)numericUpDown.Value * pix;
             DrawSquareAndEllipse(radius);
         }
 
-        // обработчик события изменения размера формы
-        private void Form_Resize (object sender, EventArgs e)
-        {
-            double radius = (double)numericUpDown.Value * pix;
-            DrawSquareAndEllipse(radius);
-        }
-
-        // событие ResizeBegin возникает, когда пользователь начинает изменять размер формы,
-        // это действие помещает форму в модальный цикл изменения размера до завершения операции изменения размера
-        private void Form_ResizeBegin (object sender, EventArgs e)
+        private void Form_ResizeBegin (object sender, EventArgs e) // событие ResizeBegin возникает, когда пользователь начинает изменять размер формы
         {
             _oldWidth = Width;
             _oldHeight = Height;
         }
-
-        // событие ResizeEnd возникает, когда пользователь завершает изменение размера формы
-        private void Form_ResizeEnd (object sender, EventArgs e)
+                
+        private void Form_ResizeEnd (object sender, EventArgs e) // событие ResizeEnd возникает, когда пользователь завершает изменение размера формы
         {
-            // Control - базовый класс для элементов управления, являющихся компонентами с визуальным представлением
-            Control control = (Control)sender;
-
-            // если изменилась ширина с прошлого раза
-            if (_oldWidth != Width)
-            {
-                double koeff = (double)control.Size.Width / (double)_oldWidth;
-                numericUpDown.Value = numericUpDown.Value * (decimal)koeff;
+            try
+            {                 
+                Control control = (Control)sender; // Control - базовый класс для элементов управления, являющихся компонентами с визуальным представлением
+                               
+                if (_oldWidth != Width)  // если изменилась ширина с прошлого раза
+                {
+                    double koeff = (double)control.Size.Width / (double)_oldWidth;
+                    numericUpDown.Value = numericUpDown.Value * (decimal)koeff;
+                }
+                
+                if (_oldHeight != Height) // если изменилась высота с прошлого раза
+                {
+                    double koeff = (double)control.Size.Height / (double)_oldHeight;
+                    numericUpDown.Value = numericUpDown.Value * (decimal)koeff;
+                }
             }
-            // если изменилась высота с прошлого раза
-            if (_oldHeight != Height)
+            catch (ArgumentOutOfRangeException)
             {
-                double koeff = (double)control.Size.Height / (double)_oldHeight;
-                numericUpDown.Value = numericUpDown.Value * (decimal)koeff;
+                MessageBox.Show("Некорректное значение радиуса. Радиус должен быть в пределах от " + numericUpDown.Minimum + " см до " + numericUpDown.Maximum + " см. Увеличьте или уменьшите размер окна.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
