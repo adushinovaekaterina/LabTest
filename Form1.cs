@@ -62,7 +62,7 @@ namespace WindowsFormsApp
         {            
             List<Point> points = new List<Point>(); // список точек
             float step = 360.0f / vertices; // значение, которое будет прибавляться к предыдущему углу и в котором будет строиться следующая вершина = 90
-            float angle = startingAngle; // угол поворота, который должен увеличиваться на 90 градусов
+            float angle = startingAngle; // угол начала поворота, который должен увеличиваться на 90 градусов
                         
             for (double i = startingAngle; i < startingAngle + 360.0; i += step) // квадрат строится вокруг окружности, 4 раза отрабатывает
             {
@@ -124,14 +124,15 @@ namespace WindowsFormsApp
         
         private void numericUpDown_ValueChanged (object sender, EventArgs e) // обработчик события изменения значения numericUpDown
         {
-            if (numericUpDown.Value > 0)
+            if (numericUpDown.Value > numericUpDown.Minimum && numericUpDown.Value < numericUpDown.Maximum)
             {
                 double radius = (double)numericUpDown.Value * pix; // берется значение из numericUpDown, приравнивается к радиусу 
                 DrawSquareAndEllipse(radius); // и перерисовываются фигуры
             }
-            else 
+            else
             {
-                MessageBox.Show("Некорректное значение радиуса. Радиус должен быть положительным " + numericUpDown.Minimum + " см до " + numericUpDown.Maximum + " см. Увеличьте значение радиуса.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                numericUpDown.Value = 2;
+                MessageBox.Show("Некорректное значение радиуса. Радиус должен быть в пределах от " + numericUpDown.Minimum + " см до " + numericUpDown.Maximum + " см.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
                 
