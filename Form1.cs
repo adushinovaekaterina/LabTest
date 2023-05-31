@@ -80,18 +80,18 @@ namespace WindowsFormsApp
         {           
             return Math.Round(AreaCalculationSquare(radius) - AreaCalculationEllipse(radius), 3); // округление до 3 числе после запятой
         }
-        
-        private double AreaCalculationEllipse (double radius) // метод для расчета площади окружности
-        {
-            var e = Math.PI * Math.Pow(radius, 2);
-            return e;
-        }
-        
-        private double AreaCalculationSquare (double radius) // метод для расчета площади квадрата
+
+        private double AreaCalculationSquare(double radius) // метод для расчета площади квадрата
         {
             double a = 2 * radius;
             var s = Math.Pow(a, 2);
             return s;
+        }
+
+        private double AreaCalculationEllipse (double radius) // метод для расчета площади окружности
+        {
+            var e = Math.PI * Math.Pow(radius, 2);
+            return e;
         }
         
         private void trackBarOfGeometricShapes_ValueChanged(object sender, EventArgs e) // обработчик события изменения значения trackBar
